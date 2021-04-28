@@ -170,4 +170,7 @@ eitherDiv x y | y == 0 = Left (show x ++ "/" ++ show  y)
 --   addEithers (Left "boom") (Left "fail") ==> Left "boom"
 
 addEithers :: Either String Int -> Either String Int -> Either String Int
-addEithers a b = todo
+addEithers (Left a) (Left b) = Left a
+addEithers (Right a) (Left b) = Left b
+addEithers (Left a) (Right b) = Left a
+addEithers (Right a) (Right b) = (Right (a + b))
