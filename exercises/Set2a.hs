@@ -94,7 +94,7 @@ isPalindrome str | str == reverse str = True
 --   palindromify "abracacabra" ==> "acaca"
 
 palindromify :: String -> String
-palindromify s | length s == 0 = ""
+palindromify s | null s  == True = ""
 	       | isPalindrome s == True = s
 	       | otherwise = palindromify cropped
 	       where cropped = tail (take (length s - 1) s)   
