@@ -116,7 +116,8 @@ countdown' current result = countdown' (current-1) (result ++ show current ++ ".
 -- Hint: remember the mod function!
 
 smallestDivisor :: Integer -> Integer
-smallestDivisor = todo
+smallestDivisor n = smallestDivisor' n 2  
+smallestDivisor' number current = if number `mod` current == 0 then current else smallestDivisor' number (current+1)
 
 ------------------------------------------------------------------------------
 -- Ex 7: implement a function isPrime that checks if the given number
@@ -125,7 +126,9 @@ smallestDivisor = todo
 -- Ps. 0 and 1 are not prime numbers
 
 isPrime :: Integer -> Bool
-isPrime = todo
+isPrime 0 = False
+isPrime 1 = False
+isPrime n = if smallestDivisor n == n then True else False
 
 ------------------------------------------------------------------------------
 -- Ex 8: implement a function biggestPrimeAtMost that returns the
@@ -140,4 +143,6 @@ isPrime = todo
 --   biggestPrimeAtMost 10 ==> 7
 
 biggestPrimeAtMost :: Integer -> Integer
-biggestPrimeAtMost = todo
+biggestPrimeAtMost n = biggestPrimeAtMost' n
+biggestPrimeAtMost' n = if isPrime n then n else biggestPrimeAtMost' (n-1)
+
