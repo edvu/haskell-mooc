@@ -103,8 +103,10 @@ palindrome str = str == reverse str
 --   capitalize "goodbye cruel world" ==> "Goodbye Cruel World"
 
 capitalize :: String -> String
-capitalize = todo
+capitalize = unwords . map capitalizeFirst . words
 
+capitalizeFirst :: [Char] -> [Char]
+capitalizeFirst str = [toUpper $ str !! 0] ++ drop 1 str
 ------------------------------------------------------------------------------
 -- Ex 6: powers k max should return all the powers of k that are less
 -- than or equal to max. For example:
