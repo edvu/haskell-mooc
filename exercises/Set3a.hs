@@ -122,7 +122,7 @@ capitalizeFirst str = [toUpper $ str !! 0] ++ drop 1 str
 --   * the function takeWhile
 
 powers :: Int -> Int -> [Int]
-powers k max = todo
+powers k max = takeWhile (\x -> x<=max) [k^i | i<-[0,1..]]
 
 ------------------------------------------------------------------------------
 -- Ex 7: implement a functional while loop. While should be a function
