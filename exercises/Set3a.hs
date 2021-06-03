@@ -145,7 +145,8 @@ powers k max = takeWhile (\x -> x<=max) [k^i | i<-[0,1..]]
 --     ==> Avvt
 
 while :: (a->Bool) -> (a->a) -> a -> a
-while check update value = todo
+while check update value | check value == False = value
+                         | otherwise = while check update $ update value
 
 ------------------------------------------------------------------------------
 -- Ex 8: another version of a while loop. This time, the check
