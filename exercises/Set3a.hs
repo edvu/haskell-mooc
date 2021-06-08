@@ -163,8 +163,10 @@ while check update value | check value == False = value
 --   whileRight (step 1000) 3  ==> 1536
 
 whileRight :: (a -> Either b a) -> a -> b
-whileRight f x = todo
-
+whileRight f x = case result of
+                 Left a -> a
+                 Right b -> whileRight f (b)
+            where result = f x
 -- for the whileRight examples:
 -- step k x doubles x if it's less than k
 step :: Int -> Int -> Either Int Int
