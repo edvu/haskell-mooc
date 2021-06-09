@@ -198,6 +198,10 @@ joinToLength len strings = [first ++ last | first <- strings, last <- strings, l
 --   [] +|+ [True]        ==> [True]
 --   [] +|+ []            ==> []
 
+(+|+) :: [a] -> [a] -> [a]
+[] +|+ ys = [head ys]
+xs +|+ [] = [head xs]
+xs +|+ ys = [head xs, head ys]
 
 ------------------------------------------------------------------------------
 -- Ex 11: remember the lectureParticipants example from Lecture 2? We
