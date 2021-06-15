@@ -218,7 +218,7 @@ xs +|+ ys = [head xs, head ys]
 --   sumRights [Left "bad!", Left "missing"]         ==>  0
 
 sumRights :: [Either a Int] -> Int
-sumRights = todo
+sumRights list = sum $ map (either (\l->0) (\r->r)) list 
 
 ------------------------------------------------------------------------------
 -- Ex 12: recall the binary function composition operation
