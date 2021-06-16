@@ -234,7 +234,8 @@ sumRights list = sum $ map (either (\l->0) (\r->r)) list
 --   multiCompose [(3*), (2^), (+1)] 0 ==> 6
 --   multiCompose [(+1), (2^), (3*)] 0 ==> 2
 
-multiCompose fs = todo
+multiCompose [] value = value
+multiCompose (x:xs) value = (x . multiCompose xs) value
 
 ------------------------------------------------------------------------------
 -- Ex 13: let's consider another way to compose multiple functions. Given
