@@ -96,7 +96,9 @@ indexDefault (x:xs) i def = indexDefault xs (i-1) def
 -- Use pattern matching and recursion to iterate through the list.
 
 sorted :: [Int] -> Bool
-sorted xs = todo
+sorted [] = True
+sorted [x] = True
+sorted (x:y:xs) = if y >= x then sorted (y:xs) else False
 
 ------------------------------------------------------------------------------
 -- Ex 6: compute the partial sums of the given list like this:
