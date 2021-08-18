@@ -148,8 +148,9 @@ merge (x:xs) (y:ys) | x >= y = y : merge (x:xs) ys
 --     ==> [1,2]
 
 mymaximum :: (a -> a -> Bool) -> a -> [a] -> a
-mymaximum bigger initial xs = todo
-
+mymaximum bigger initial [] = initial
+mymaximum bigger initial (x:xs) | bigger initial x = mymaximum bigger initial xs
+                                | otherwise = mymaximum bigger x xs
 ------------------------------------------------------------------------------
 -- Ex 9: define a version of map that takes a two-argument function
 -- and two lists. Example:
