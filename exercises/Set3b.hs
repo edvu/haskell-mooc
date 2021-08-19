@@ -163,7 +163,10 @@ mymaximum bigger initial (x:xs) | bigger initial x = mymaximum bigger initial xs
 -- Use recursion and pattern matching. Do not use any library functions.
 
 map2 :: (a -> b -> c) -> [a] -> [b] -> [c]
-map2 f as bs = todo
+map2 f [] [] = []
+map2 f (x:xs) [] = []
+map2 f [] (y:ys) = []
+map2 f (x:xs) (y:ys) = f x y : map2 f xs ys
 
 ------------------------------------------------------------------------------
 -- Ex 10: implement the function maybeMap, which works a bit like a
