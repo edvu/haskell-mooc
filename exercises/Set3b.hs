@@ -190,4 +190,7 @@ map2 f (x:xs) (y:ys) = f x y : map2 f xs ys
 --   ==> []
 
 maybeMap :: (a -> Maybe b) -> [a] -> [b]
-maybeMap f xs = todo
+maybeMap f [] = []
+maybeMap f (x:xs)= case f x of
+                  Just i -> i : maybeMap f xs
+                  Nothing -> maybeMap f xs
