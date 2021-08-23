@@ -288,12 +288,15 @@ multiApp f gs x = f (map ($x) gs)
 -- using (:). If you build the list in an argument to a helper
 -- function, the surprise won't work.
 
-let x = 0
-let y = 0
-interpreter :: [String] -> [String]
 
-interpreter (f:fs) = case f of "up" -> y + 1
-                               "down" -> y - 1
-                               "left" -> x - 1
-                               "right" -> x + 1
-                               
+interpreter :: [String] -> [String]
+interpreter fs = interpreter' 0 0 fs []
+
+interpreter' :: Int -> Int -> [String] -> [String] -> [String]
+interpreter' x y [] res = []
+interpreter' x y (f:fs) res = case f of "up" -> interpreter' x (y+1) fs res
+                                        "down" -> interpreter' x (y-1) fs res
+                                        "left" -> interpreter' (x-1) y fs res
+                                        "right" -> interpreter' (x+1) y fs res
+                                        "printX" -> show x : interpreter' x y fs res                 
+                                        "printY" -> show y : interpreter' x y fs res
